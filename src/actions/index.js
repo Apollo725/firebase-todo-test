@@ -1,3 +1,3 @@
-import {addItem, getItem} from './actions';
+import {addItem, getItem, removeItem} from './actions';
 
-export {addItem, getItem}
+export {addItem, getItem, removeItem}

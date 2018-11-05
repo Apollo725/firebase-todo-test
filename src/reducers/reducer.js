@@ -1,5 +1,5 @@
 import {
-  ADD_ITEM, GET_ALL_REQUEST, GET_ALL_SUCCESS
+  ADD_ITEM, GET_ALL_REQUEST, GET_ALL_SUCCESS, REMOVE_ITEM
 } from '../constants/ActionTypes'
 
 const initialState = {
@@ -10,7 +10,6 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
       case ADD_ITEM:
-      console.log('add item', state);
           return {...state, status: 'add_success' };
       case GET_ALL_REQUEST:
         return {
@@ -23,6 +22,12 @@ export default function reducer(state = initialState, action) {
             items: action.payload,
             status: 'success'
           };
+      case REMOVE_ITEM:
+          return {
+            ...state,
+            items: action.payload,
+            status: 'delete_success'
+          }
       default:
           return state;
   }

@@ -14,7 +14,7 @@ class Wrapper extends Component {
     console.log('nextProps', nextProps);
     const { status: nextStatus } = nextProps;
 
-    if (nextStatus === 'add_success') {
+    if (nextStatus === 'add_success' || nextStatus === 'delete_success') {
       this.props.getItem();
     }
   }
@@ -28,7 +28,7 @@ class Wrapper extends Component {
           { todo_db &&
             Object.keys(todo_db).map((prop, index) => {
                console.log("index", index);
-               return <TodoItem content={todo_db[prop].text} key={index} />
+               return <TodoItem content={todo_db[prop].text} key={index} params={prop} />
             })
           }
       </div>

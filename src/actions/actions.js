@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-  ADD_ITEM, GET_ALL_REQUEST, GET_ALL_SUCCESS
+  ADD_ITEM, GET_ALL_REQUEST, GET_ALL_SUCCESS, REMOVE_ITEM
 } from '../constants/ActionTypes';
 import {API_URL} from '../utils/config';
 
@@ -32,10 +32,23 @@ export function getItem() {
     })
     axios.defaults.baseURL = API_URL;
     const response = axios.get('/data').then(json => json.data);
-    console.log('axios get', response);
+    // console.log('axios get', response);
     dispatch({
       type: GET_ALL_SUCCESS,
       payload: response,
     });
+  }
+}
+
+export function removeItem(id){
+  console.log('id', id);
+  axios.defaults.baseURL = API_URL;
+  const response = axios.delete(`/data/${id}`).then(json => json.data);
+  console.log('axios get', response);
+  return dispatch => {
+    dispatch({
+      type: REMOVE_ITEM,
+      payload: response  
+    })
   }
 }
